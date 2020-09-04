@@ -1,0 +1,67 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyVaultName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Key Vault where to store the secrets."
+            },
+            "defaultValue": "[concat('kv-', uniqueString(resourceGroup().name))]"
+        },
+        "cosmosDbName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Cosmos DB instance."
+            },
+            "defaultValue": "[concat('cd-', uniqueString(resourceGroup().name))]"
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Location to place the resources."
+            },
+            "defaultValue": "[resourceGroup().location]"
+        }
+    },
+    "variables": {
+        "cosmosDbId": "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDbName'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2018-02-14",
+            "name": "[parameters('keyVaultName')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "displayName": "[parameters('keyVaultName')]"
+            },
+            "properties": {
+                "enabledForDeployment": true,
+                "enabledForTemplateDeployment": true,
+                "enabledForDiskEncryption": true,
+                "tenantId": "[subscription().tenantId]",
+                "sku": {
+                    "name": "standard",
+                    "family": "A"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "apiVersion": "2015-06-01",
+            "name": "[concat(parameters('keyVaultName'), '/CosmosDBAccessKey')]",
+            "properties": {
+                "contentType": "text/plain",
+                "value": "[listKeys(variables('cosmosDbId'), '2019-08-01').primaryMasterKey]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+            ]
+        }
+    ],
+    "outputs": {
+    },
+    "functions": [
+    ]
+}

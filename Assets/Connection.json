@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "cosmosDbName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Cosmos DB instance."
+            },
+            "defaultValue": "[concat('cd-', uniqueString(resourceGroup().name))]"
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Location to place the resources."
+            },
+            "defaultValue": "[resourceGroup().location]"
+        }
+    },
+    "variables": {
+        "name": "documentdb",
+        "cosmosDbId": "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDbName'))]"
+    },
+    "resources": [
+        {
+            "name": "[variables('name')]",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[parameters('location')]",
+            "tags": {
+                "Project": "ARM in a serverless world"
+            },
+            "properties": {
+                "api": {
+                    "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', resourceGroup().location, 'documentdb')]"
+                },
+                "parameterValues": {
+                    "accessKey": "[listKeys(variables('cosmosDbId'), '2019-08-01').primaryMasterKey]",
+                    "databaseAccount": "[parameters('cosmosDbName')]"
+                },
+                "displayName": "[variables('name')]"
+            }
+        }
+    ],
+    "outputs": {
+    },
+    "functions": [
+    ]
+}

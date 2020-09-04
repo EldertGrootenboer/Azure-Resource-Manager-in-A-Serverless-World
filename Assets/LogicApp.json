@@ -1,0 +1,107 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "logicAppName": {
+            "defaultValue": "la-we-arm-demo-azuresaturday",
+            "type": "string"
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Location to place the resources."
+            },
+            "defaultValue": "[resourceGroup().location]"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-07-01",
+            "dependsOn": [
+            ],
+            "location": "[parameters('location')]",
+            "name": "[parameters('logicAppName')]",
+            "properties": {
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {
+                                "documentdb": {
+                                    "connectionId": "/subscriptions/fdf3a3a3-c8f5-472f-8367-6a9a4a6c11a9/resourceGroups/rg-d-arm-in-a-serverless-world/providers/Microsoft.Web/connections/documentdb",
+                                    "connectionName": "documentdb",
+                                    "id": "/subscriptions/fdf3a3a3-c8f5-472f-8367-6a9a4a6c11a9/providers/Microsoft.Web/locations/westeurope/managedApis/documentdb"
+                                }
+                            },
+                            "type": "Object"
+                        },
+                        "EventName": {
+                            "defaultValue": "Demo preparation",
+                            "type": "String"
+                        }
+                    },
+                    "triggers": {
+                        "Recurrence": {
+                            "recurrence": {
+                                "frequency": "Minute",
+                                "interval": 1
+                            },
+                            "type": "Recurrence"
+                        }
+                    },
+                    "actions": {
+                        "Create_or_update_document": {
+                            "runAfter": {
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "Event": "@{parameters('EventName')}",
+                                    "Text": "Hello from @{parameters('EventName')} at @{utcNow()}",
+                                    "id": "@{guid()}"
+                                },
+                                "headers": {
+                                    "x-ms-documentdb-raw-partitionkey": "\"@{parameters('EventName')}\""
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['documentdb']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/dbs/@{encodeURIComponent('mc6empj7ji6ew')}/colls/@{encodeURIComponent('mc6empj7ji6ew')}/docs"
+                            }
+                        }
+                    },
+                    "outputs": {
+                    }
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": "[variables('workflows_la_we_my_demo_event_parameters_$connections')]"
+                    },
+                    "EventName": {
+                        "value": "[variables('workflows_la_we_my_demo_event_parameters_EventName')]"
+                    }
+                },
+                "state": "Enabled"
+            },
+            "scale": null,
+            "tags": {
+                "Project": "ARM in a serverless world"
+            },
+            "type": "Microsoft.Logic/workflows"
+        }
+    ],
+    "variables": {
+        "workflows_la_we_my_demo_event_parameters_$connections": {
+            "documentdb": {
+                "connectionId": "[resourceId('Microsoft.Web/connections', 'documentdb')]",
+                "connectionName": "documentdb",
+                "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', resourceGroup().location, 'documentdb')]"
+            }
+        },
+        "workflows_la_we_my_demo_event_parameters_EventName": "Azure Saturday Cologne"
+    }
+}
