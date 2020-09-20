@@ -19,8 +19,8 @@ name: $(BuildDefinitionName).$(Year:yy)$(DayOfYear)$(rev:.r)
 stages:
 - stage: Build
   jobs:
-  - job: buildAndVerify
-    displayName: Build/Verification
+  - job: Validate
+    displayName: Validate ARM Templates
     continueOnError: false
     pool:
       name: 'Azure pipelines'
@@ -38,7 +38,7 @@ stages:
         resourceGroupName: rg-arm-in-a-serverless-world
         location: $(location)
         templateLocation: 'Linked artifact'
-        csmFile: https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/assets/demo-3-tooling/azuredeploy.json
+        csmFile: assets/demo-3-tooling/azuredeploy.json
         overrideParameters: '
         -location $(location)
           '
