@@ -23,6 +23,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+
       - name: Deploy ARM Template
         uses: azure/CLI@v1
         with:
