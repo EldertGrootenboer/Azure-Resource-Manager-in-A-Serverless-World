@@ -23,11 +23,3 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy ARM Templates
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-          resourceGroupName: github-action-arm-rg
-          template: ./assets/demo-3-tooling/azuredeploy.json
-          parameters: location=westeurope
