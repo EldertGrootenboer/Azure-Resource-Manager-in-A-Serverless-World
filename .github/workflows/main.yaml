@@ -1,22 +1,31 @@
 name: Deploy ARM Template
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - ".github/workflows/main.yml"
-      - "assets/demo-3-tooling/azuredeploy.json"
-      - "assets/demo-3-tooling/3a-cosmos-db.json"
-      - "assets/demo-3-tooling/3b-cosmos-db-connection.json"
-      - "assets/demo-3-tooling/3c-logic-app.json"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+        required: false
 
 jobs:
-  deploy-resources:
+  deploy-storage-account-template:
     runs-on: ubuntu-latest
     steps:
-    - name: Test ARM Templates
-      id: pathtest
-      uses: aliencube/arm-ttk-actions@v0.3
-      with:
-        path: ./assets/demo-3-tooling
+      - name: Checkout source code
+        uses: actions/checkout@master
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+      - name: Deploy ARM Template
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az deployment group create --resource-group myResourceGroup --template-file ./templates/azuredeploy.json
