@@ -32,12 +32,12 @@ stages:
       inputs:
         templatelocation: '$(System.DefaultWorkingDirectory)\assets\demo-3-deployment'
         resultLocation: '$(System.DefaultWorkingDirectory)\results'
+      continueOnError: true
 
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'NUnit'
         testResultsFiles: '$(System.DefaultWorkingDirectory)\results\*-armttk.xml'
-      condition: always()
 
     - task: AzureResourceGroupDeployment@2
       name: Validate_ARM_Templates
@@ -49,7 +49,6 @@ stages:
         templateLocation: 'Linked artifact'
         csmFile: assets/demo-3-deployment/azuredeploy.json
         deploymentMode: 'Validation'
-      condition: always()
 
     - publish: assets/demo-3-deployment
       displayName: 'Publish Artifacts'
