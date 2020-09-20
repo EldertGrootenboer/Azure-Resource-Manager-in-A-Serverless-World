@@ -1,12 +1,14 @@
 name: Deploy ARM Templates
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/deployStorageAccount.yml"
+      - 'assets/demo-3-tooling/**.json'
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
       tags:
         description: 'Test scenario tags'
         required: false
