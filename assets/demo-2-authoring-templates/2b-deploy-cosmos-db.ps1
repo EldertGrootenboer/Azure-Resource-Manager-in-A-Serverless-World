@@ -8,4 +8,4 @@ $basePath = "/home/codespace/workspace"
 
 Get-AzSubscription -SubscriptionName $subscriptionName | Set-AzContext
 New-AzResourceGroup -Name $resourceGroupName -Location 'West Europe' -Tag @{CreationDate=[DateTime]::UtcNow.ToString(); Project="Azure Resource Manager In A Serverless World"; Purpose="Session"}
-New-AzResourceGroupDeployment -Name Demo2 -ResourceGroupName $resourceGroupName -TemplateFile "$basePath/Azure-Resource-Manager-in-A-Serverless-World/Assets/Demo 2 - Authoring Templates/2a. Cosmos DB.json"
+New-AzResourceGroupDeployment -Name Demo2 -ResourceGroupName $resourceGroupName -TemplateFile "$basePath/Azure-Resource-Manager-in-A-Serverless-World/Assets/demo-2-authoring-templates/2a-cosmos-db.json"

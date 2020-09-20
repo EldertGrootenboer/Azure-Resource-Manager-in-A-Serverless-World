@@ -26,7 +26,7 @@ What we will be doing in this template.
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('gitHub').baseUri, '3a. Cosmos DB.json')]",
+                    "uri": "[concat(parameters('gitHub').baseUri, '3a-cosmos-db.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -44,7 +44,7 @@ What we will be doing in this template.
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('gitHub').baseUri, '3b. Cosmos DB Connection.json')]",
+                    "uri": "[concat(parameters('gitHub').baseUri, '3b-cosmos-db-connection.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -62,7 +62,7 @@ What we will be doing in this template.
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('gitHub').baseUri, '3c. Logic App.json')]",
+                    "uri": "[concat(parameters('gitHub').baseUri, '3c-logic-app.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

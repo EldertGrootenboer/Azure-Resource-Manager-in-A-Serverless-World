@@ -6,26 +6,36 @@ on:
       - master
     paths:
       - ".github/workflows/main.yml"
-      - "Assets/Demo 3 - Tooling/azuredeploy.json"
-      - "Assets/Demo 3 - Tooling/3a. Cosmos DB.json"
-      - "Assets/Demo 3 - Tooling/3b. Cosmos DB Connection.json"
-      - "Assets/Demo 3 - Tooling/3c. Logic App.json"
+      - "assets/demo-3-tooling/azuredeploy.json"
+      - "assets/demo-3-tooling/3a-cosmos-db.json"
+      - "assets/demo-3-tooling/3b-cosmos-db-connection.json"
+      - "assets/demo-3-tooling/3c-logic-app.json"
 
 jobs:
+  run-tests:
+    steps:
+    - name: Test ARM Templates
+      id: pathtest
+      uses: aliencube/arm-ttk-actions@v0.3
+      with:
+        path: ./assets/demo-3-tooling
+
+    - name: Test results
+      shell: bash
+      continue-on-error: true
+      run: |
+        echo "${{ toJSON(fromJSON(steps.pathtest.outputs.results)) }}"
+
   deploy-resources:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@master
-
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
-      - name: Deploy ARM Template
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az deployment group create --resource-group rg-arm-in-a-serverless-world --template-file ./Assets/Demo 3 - Tooling/azuredeploy.json
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+        resourceGroupName: github-action-arm-rg
+        template: ./assets/demo-3-tooling/azuredeploy.json
+        parameters: location=westeurope
