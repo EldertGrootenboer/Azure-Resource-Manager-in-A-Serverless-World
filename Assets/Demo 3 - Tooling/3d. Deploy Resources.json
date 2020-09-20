@@ -1,0 +1,61 @@
+/*
+What we will be doing in this template.
+    1. Create linked template
+    2. Set correct dependencies between templates
+*/
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "gitHub": {
+            "defaultValue": {
+               "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/Assets/Demo 3 - Tooling/" 
+            },
+            "type": "object"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "cosmosDB",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('gitHub').baseUri, '3a. Cosmos DB.json')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "cosmosDbConnection",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'cosmosDB')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('gitHub').baseUri, '3b. Cosmos DB Connection.json')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "logicApp",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'cosmosDbConnection')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('gitHub').baseUri, '3c. Logic App.json')]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
+    ]
+}
