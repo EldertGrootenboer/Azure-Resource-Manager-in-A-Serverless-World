@@ -61,7 +61,7 @@ stages:
         deploy:
           steps:  
           - task: AzureResourceGroupDeployment@2
-            name: 'Deploy ARM templates'
+            name: Deploy ARM templates
             inputs:
               azureSubscription: Visual Studio Enterprise
               action: 'Create Or Update Resource Group'
