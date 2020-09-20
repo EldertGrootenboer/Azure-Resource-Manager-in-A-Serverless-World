@@ -1,15 +1,15 @@
 name: Deploy ARM Template
 
 on:
-  push:
-    branches:
-      - github-actions
-    paths:
-      - ".github/workflows/main.yml"
-      - "assets/demo3-tooling/azuredeploy.json"
-      - "assets/demo3-tooling/3a-cosmos-db.json"
-      - "assets/demo3-tooling/3b-cosmos-db-connection.json"
-      - "assets/demo3-tooling/3c-logic-app.json"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+        required: false
 
 jobs:
   deploy-resources:
