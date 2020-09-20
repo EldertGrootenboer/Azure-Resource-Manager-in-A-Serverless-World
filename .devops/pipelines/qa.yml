@@ -30,7 +30,7 @@ stages:
     steps:
     - task: RunARMTTKTests@1
       inputs:
-        templatelocation: 'assets/demo-3-deployment'
+        templatelocation: '$(System.DefaultWorkingDirectory)\assets\demo-3-deployment'
         resultLocation: '$(System.DefaultWorkingDirectory)\results'
 
     - task: PublishTestResults@2
