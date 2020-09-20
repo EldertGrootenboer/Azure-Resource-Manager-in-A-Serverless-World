@@ -33,7 +33,7 @@ stages:
     - task: AzureResourceGroupDeployment@2
       name: Validate
       inputs:
-        azureSubscription: Visual Studio Enterprise (fdf3a3a3-c8f5-472f-8367-6a9a4a6c11a9)
+        azureSubscription: Visual Studio Enterprise
         action: 'Create Or Update Resource Group'
         resourceGroupName: rg-arm-in-a-serverless-world
         location: $(location)
