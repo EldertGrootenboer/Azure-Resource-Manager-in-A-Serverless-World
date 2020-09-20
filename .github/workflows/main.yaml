@@ -12,7 +12,7 @@ on:
       - "assets/demo-3-tooling/3c-logic-app.json"
 
 jobs:
-  run-tests:
+  deploy-resources:
     runs-on: ubuntu-latest
     steps:
     - name: Test ARM Templates
@@ -26,10 +26,8 @@ jobs:
       continue-on-error: true
       run: |
         echo "${{ toJSON(fromJSON(steps.pathtest.outputs.results)) }}"
-
-  deploy-resources:
-    runs-on: ubuntu-latest
-    steps:
+      
+    - name: Deploy ARM Templates
     - uses: actions/checkout@master
     - uses: azure/login@v1
       with:
