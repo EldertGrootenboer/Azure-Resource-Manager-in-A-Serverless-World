@@ -9,9 +9,13 @@ What we will be doing in this template.
     "parameters": {
         "gitHub": {
             "defaultValue": {
-               "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/Assets/Demo 3 - Tooling/" 
+                "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/Assets/Demo 3 - Tooling/"
             },
             "type": "object"
+        },
+        "location": {
+            "defaultValue": "[resourceGroup().location]",
+            "type": "string"
         }
     },
     "resources": [
@@ -24,6 +28,9 @@ What we will be doing in this template.
                 "templateLink": {
                     "uri": "[concat(parameters('gitHub').baseUri, '3a. Cosmos DB.json')]",
                     "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": "[parameters('location')]"
                 }
             }
         },
@@ -39,6 +46,9 @@ What we will be doing in this template.
                 "templateLink": {
                     "uri": "[concat(parameters('gitHub').baseUri, '3b. Cosmos DB Connection.json')]",
                     "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": "[parameters('location')]"
                 }
             }
         },
@@ -54,6 +64,9 @@ What we will be doing in this template.
                 "templateLink": {
                     "uri": "[concat(parameters('gitHub').baseUri, '3c. Logic App.json')]",
                     "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": "[parameters('location')]"
                 }
             }
         }

@@ -8,7 +8,6 @@
 [Parameter(Mandatory=$true)]
 [string]$TemplateFileName,
 
-[Parameter(Mandatory=$true)]
 [switch]$IsMainTemplate
 )
 
@@ -25,7 +24,7 @@ $locationParameter = $templateObject.parameters.location
 
 # All location parameters must be of type "string" in the parameter declaration
 if($locationParameter -ne $null -and $locationParameter.type -ne "string"){
-    Write-Error "The location parameter must be a 'string' type in the parameter delcaration `"$($locationParameter.type)`"" -ErrorId Location.Parameter.TypeMisMatch -TargetObject $parameter
+    Write-Error "The location parameter must be a 'string' type in the parameter declaration `"$($locationParameter.type)`"" -ErrorId Location.Parameter.TypeMisMatch -TargetObject $parameter
 }
 
 # In mainTemplate:
@@ -38,10 +37,11 @@ if ($IsMainTemplate){
 # In all other templates:
 # if the parameter named "location" exists, it must not have a defaultValue property
 # Note that Powershell will count an empty string (which should fail the test) as null if not explictly tested, so we check for it
-}else {
+}
+else {
     if($locationParameter.defaultValue -ne $null){ 
         Write-Error "The location parameter of nested templates must not have a defaultValue property. It is `"$($locationParameter.defaultValue)`"" -ErrorId Location.Parameter.DefaultValuePresent -TargetObject $parameter
-    }   
+    }
 }
 # Now check that the rest of the template doesn't use [resourceGroup().location] 
 if ($TemplateWithoutLocationParameter -like '*resourceGroup().location*') {

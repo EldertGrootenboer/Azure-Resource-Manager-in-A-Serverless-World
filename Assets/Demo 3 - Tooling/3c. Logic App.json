@@ -17,7 +17,6 @@ What we will be doing in this template.
         },
         "general": {
             "defaultValue": {
-                "location": "[resourceGroup().location]",
                 "tags": {
                     "CreationDate": "[utcNow()]",
                     "Project": "Azure Resource Manager In A Serverless World",
@@ -25,6 +24,9 @@ What we will be doing in this template.
                 }
             },
             "type": "object"
+        },
+        "location": {
+            "type": "string"
         },
         "logicApp": {
             "defaultValue": {
@@ -42,7 +44,7 @@ What we will be doing in this template.
             "type": "Microsoft.Logic/workflows",
             "name": "[parameters('logicApp').name]",
             "apiVersion": "2017-07-01",
-            "location": "[parameters('general').location]",
+            "location": "[parameters('location')]",
             "tags": "[parameters('general').tags]",
             "properties": {
                 "definition": {
@@ -98,7 +100,7 @@ What we will be doing in this template.
                             "documentdb": {
                                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('logicApp').apiConnections.cosmosDb)]",
                                 "connectionName": "documentdb",
-                                "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', resourceGroup().location, 'documentdb')]"
+                                "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', parameters('location'), 'documentdb')]"
                             }
                         }
                     },

@@ -18,7 +18,6 @@ What we will be doing in this template.
         },
         "general": {
             "defaultValue": {
-                "location": "[resourceGroup().location]",
                 "tags": {
                     "CosmosAccountType": "Production",
                     "CreationDate": "[utcNow()]",
@@ -28,6 +27,9 @@ What we will be doing in this template.
                 }
             },
             "type": "object"
+        },
+        "location": {
+            "type": "string"
         }
     },
     "resources": [
@@ -36,7 +38,7 @@ What we will be doing in this template.
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "name": "[parameters('cosmosDb').name]",
             "apiVersion": "2020-04-01",
-            "location": "[parameters('general').location]",
+            "location": "[parameters('location')]",
             "tags": "[parameters('general').tags]",
             "kind": "GlobalDocumentDB",
             "properties": {
@@ -47,7 +49,7 @@ What we will be doing in this template.
                 },
                 "locations": [
                     {
-                        "locationName": "[parameters('general').location]",
+                        "locationName": "[parameters('location')]",
                         "failoverPriority": 0
                     }
                 ],

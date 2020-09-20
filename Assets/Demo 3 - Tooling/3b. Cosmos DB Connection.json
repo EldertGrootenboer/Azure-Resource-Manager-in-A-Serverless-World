@@ -17,11 +17,8 @@ What we will be doing in this template.
             },
             "type": "object"
         },
-        "general": {
-            "defaultValue": {
-                "location": "[resourceGroup().location]"
-            },
-            "type": "object"
+        "location": {
+            "type": "string"
         },
         "logicApps": {
             "defaultValue": {
@@ -37,14 +34,14 @@ What we will be doing in this template.
             "type": "Microsoft.Web/connections",
             "apiVersion": "2016-06-01",
             "name": "[parameters('logicApps').apiConnections.cosmosDb]",
-            "location": "[parameters('general').location]",
+            "location": "[parameters('location')]",
             "properties": {
                 "parameterValues": {
                     "databaseAccount": "[parameters('cosmosDb').name]",
                     "accessKey": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDb').name), '2020-04-01').primaryMasterKey]"
                 },
                 "api": {
-                    "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', parameters('general').location, 'documentdb')]"
+                    "id": "[subscriptionResourceId('Microsoft.Web/locations/managedApis', parameters('location'), 'documentdb')]"
                 }
             }
         }
