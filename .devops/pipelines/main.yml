@@ -68,5 +68,5 @@ stages:
               resourceGroupName: rg-arm-in-a-serverless-world
               location: $(location)
               templateLocation: 'Linked artifact'
-              csmFile: '$(Pipeline.Workspace)/${{parameters.artifactName}}/azuredeploy.json'
+              csmFile: '$(Pipeline.Workspace)/demo-3-tooling/azuredeploy.json'
               deploymentMode: 'Incremental'
