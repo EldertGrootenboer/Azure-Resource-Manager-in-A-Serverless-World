@@ -6,4 +6,4 @@ $basePath = "/home/codespace/workspace"
 
 Clear-Host
 Import-Module "$basePath/Azure-Resource-Manager-in-A-Serverless-World/Assets/arm-ttk/arm-ttk/arm-ttk.psd1"
-Test-AzTemplate -TemplatePath "$basePath/Azure-Resource-Manager-in-A-Serverless-World/Assets/demo-3-tooling"
+Test-AzTemplate -TemplatePath "$basePath/Azure-Resource-Manager-in-A-Serverless-World/Assets/demo-3-deployment"
