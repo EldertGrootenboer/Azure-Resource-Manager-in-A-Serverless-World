@@ -39,7 +39,4 @@ stages:
         location: $(location)
         templateLocation: 'Linked artifact'
         csmFile: assets/demo-3-tooling/azuredeploy.json
-        overrideParameters: '
-        -location $(location)
-          '
         deploymentMode: 'Validation'
