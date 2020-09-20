@@ -26,14 +26,3 @@ jobs:
       continue-on-error: true
       run: |
         echo "${{ toJSON(fromJSON(steps.pathtest.outputs.results)) }}"
-      
-    - uses: actions/checkout@master
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-        resourceGroupName: github-action-arm-rg
-        template: ./assets/demo-3-tooling/azuredeploy.json
-        parameters: location=westeurope
