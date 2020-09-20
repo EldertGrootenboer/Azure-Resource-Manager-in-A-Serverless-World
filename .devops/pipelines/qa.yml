@@ -6,7 +6,7 @@ trigger:
   paths:
     include:
     - assets/demo-3-deployment
-    - .devops/pipelines/main.yml
+    - .devops/pipelines/qa.yml
     exclude:
     - README.md
 
