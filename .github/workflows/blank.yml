@@ -29,11 +29,15 @@ jobs:
 
       - run: ls
 
+      - run: ls assets
+
+      - run: ls assets/demo-3-tooling
+
       - name: Run ARM-TTK
         uses: venura9/arm-ttk@master
         id: path-test
         with: 
-          path: /assets/demo-3-tooling/azuredeploy.json
+          path: assets/demo-3-tooling/azuredeploy.json
 
       - name: Results for Run ARM-TTK
         run: |
