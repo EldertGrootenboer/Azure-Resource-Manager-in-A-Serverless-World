@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - github-actions
-      - master
     paths:
       - ".github/workflows/main.yml"
-      - "assets/demo-3-tooling/azuredeploy.json"
-      - "assets/demo-3-tooling/3a-cosmos-db.json"
-      - "assets/demo-3-tooling/3b-cosmos-db-connection.json"
-      - "assets/demo-3-tooling/3c-logic-app.json"
+      - "assets/demo3-tooling/azuredeploy.json"
+      - "assets/demo3-tooling/3a-cosmos-db.json"
+      - "assets/demo3-tooling/3b-cosmos-db-connection.json"
+      - "assets/demo3-tooling/3c-logic-app.json"
 
 jobs:
-  deploy-storage-account-template:
+  deploy-resources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -23,3 +22,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy ARM Template
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az deployment group create --resource-group rg-arm-in-a-serverless-world --template-file ./assets/demo3-tooling/azuredeploy.json
