@@ -1,4 +1,4 @@
-name: Deploy ARM Template
+name: Deploy ARM Templates
 
 on:
   workflow_dispatch:
@@ -12,20 +12,28 @@ on:
         required: false
 
 jobs:
-  deploy-storage-account-template:
+  deploy-arm-templates:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@master
+
+        run: ls ./assets/demo-3-tooling
+
+      - name: Test ARM Templates - path
+        id: pathtest
+        uses: aliencube/arm-ttk-actions@v0.3
+        with:
+          path: ./assets/demo-3-tooling
+
+      - name: Test result - path
+        shell: bash
+        continue-on-error: true
+        run: |
+          echo "${{ toJSON(fromJSON(steps.pathtest.outputs.results)) }}"
 
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
-      - name: Deploy ARM Template
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az deployment group create --resource-group myResourceGroup --template-file ./templates/azuredeploy.json
