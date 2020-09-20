@@ -19,13 +19,13 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@master
 
-      - name: Test ARM Templates - path
+      - name: Test ARM Templates
         id: pathtest
         uses: aliencube/arm-ttk-actions@v0.3
         with:
           path: ./assets/demo-3-tooling
 
-      - name: Test result - path
+      - name: Test results
         shell: bash
         continue-on-error: true
         run: |
@@ -35,3 +35,11 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy ARM Templates
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          resourceGroupName: rg-arm-in-a-serverless-world
+          template: ./assets/demo-3-tooling/azuredeploy.json
+          parameters: location=westeurope
