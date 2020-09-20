@@ -49,10 +49,13 @@ stages:
         templateLocation: 'Linked artifact'
         csmFile: assets/demo-3-deployment/azuredeploy.json
         deploymentMode: 'Validation'
+      condition: always()
 
     - publish: assets/demo-3-deployment
       displayName: 'Publish Artifacts'
       artifact: demo-3-deployment
+      dependsOn: Validate_ARM_Templates
+      condition: succeeded()
 
 - stage: Deployment 
   dependsOn: Validation
