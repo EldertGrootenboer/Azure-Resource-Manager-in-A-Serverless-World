@@ -3,7 +3,7 @@ name: Deploy ARM Template
 on:
   push:
     branches:
-      - master
+      - github-actions
     paths:
       - ".github/workflows/main.yml"
       - "assets/demo-3-tooling/azuredeploy.json"
@@ -12,11 +12,16 @@ on:
       - "assets/demo-3-tooling/3c-logic-app.json"
 
 jobs:
-  deploy-resources:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Test ARM Templates
-      id: pathtest
-      uses: aliencube/arm-ttk-actions@v0.3
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
       with:
-        path: ./assets/demo-3-tooling
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+        resourceGroupName: github-action-arm-rg
+        template: ./assets/demo-3-tooling/azuredeploy.json
+        parameters: location=westeurope
