@@ -13,6 +13,7 @@ on:
 
 jobs:
   run-tests:
+    runs-on: ubuntu-latest
     steps:
     - name: Test ARM Templates
       id: pathtest
