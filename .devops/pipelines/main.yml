@@ -30,7 +30,7 @@ stages:
       clean: all
     steps:
     - task: AzureResourceGroupDeployment@2
-      name: Validate ARM Templates
+      name: Validate_ARM_Templates
       inputs:
         azureSubscription: Visual Studio Enterprise
         action: 'Create Or Update Resource Group'
@@ -61,7 +61,7 @@ stages:
         deploy:
           steps:  
           - task: AzureResourceGroupDeployment@2
-            name: Deploy ARM templates
+            name: Deploy_ARM_Templates
             inputs:
               azureSubscription: Visual Studio Enterprise
               action: 'Create Or Update Resource Group'
