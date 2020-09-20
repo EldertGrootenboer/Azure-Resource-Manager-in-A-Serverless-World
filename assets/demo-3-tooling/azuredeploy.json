@@ -30,7 +30,9 @@ What we will be doing in this template.
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location": "[parameters('location')]"
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
                 }
             }
         },
@@ -48,7 +50,9 @@ What we will be doing in this template.
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location": "[parameters('location')]"
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
                 }
             }
         },
@@ -66,7 +70,9 @@ What we will be doing in this template.
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location": "[parameters('location')]"
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
                 }
             }
         }
