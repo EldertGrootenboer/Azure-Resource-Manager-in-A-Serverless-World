@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy ARM Template
+name: Deploy ARM Templates
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -31,7 +31,7 @@ jobs:
         uses: venura9/arm-ttk@master
         id: path-test
         with: 
-          path: assets/demo-3-tooling/azuredeploy.json
+          path: ./assets/demo-3-tooling/azuredeploy.json
 
       - name: Results for Run ARM-TTK
         run: |
