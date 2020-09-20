@@ -1,0 +1,43 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - assets/demo-3-tooling
+    exclude:
+    - README.md
+
+variables:
+  location: westeurope
+
+# Use build definition name for build/release numbers
+name: $(BuildDefinitionName).$(Year:yy)$(DayOfYear)$(rev:.r)
+
+# Call the build process template
+stages:
+- stage: Build
+  jobs:
+  - job: buildAndVerify
+    displayName: Build/Verification
+    continueOnError: false
+    pool: ${{parameters.pool}}
+
+    workspace:
+      clean: all
+
+    steps:
+    - task: AzureResourceGroupDeployment@2
+      name: 'Validate ARM templates'
+      inputs:
+        azureSubscription: Visual Studio Enterprise (fdf3a3a3-c8f5-472f-8367-6a9a4a6c11a9)
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: rg-arm-in-a-serverless-world
+        location: $(location)
+        templateLocation: 'Linked artifact'
+        csmFile: https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/assets/demo-3-tooling/azuredeploy.json
+        overrideParameters: '
+        -location $(location)
+          '
+        deploymentMode: 'Validation'
