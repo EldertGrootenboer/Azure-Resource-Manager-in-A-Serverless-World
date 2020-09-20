@@ -13,19 +13,19 @@ on:
       - "assets/demo-3-tooling/3c-logic-app.json"
 
 jobs:
-  build-and-deploy:
+  deploy-storage-account-template:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-      - uses: actions/checkout@master
-      
+        uses: actions/checkout@master
+
       - name: Login to Azure
-      - uses: azure/login@v1
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy ARM Templates
-      - uses: azure/arm-deploy@v1
+        uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: github-action-arm-rg
