@@ -78,9 +78,6 @@ What we will be doing in this template.
                                     "Text": "Hello from @{parameters('EventName')} at @{utcNow()}",
                                     "id": "@{guid()}"
                                 },
-                                "headers": {
-                                    "x-ms-documentdb-raw-partitionkey": "\"@{parameters('EventName')}\""
-                                },
                                 "host": {
                                     "connection": {
                                         "name": "@parameters('$connections')['documentdb']['connectionId']"

@@ -5,7 +5,7 @@ trigger:
     - master
   paths:
     include:
-    - assets/demo-3-tooling
+    - assets/demo-3-deployment
     - .devops/pipelines/main.yml
     exclude:
     - README.md
@@ -37,12 +37,12 @@ stages:
         resourceGroupName: rg-arm-in-a-serverless-world
         location: $(location)
         templateLocation: 'Linked artifact'
-        csmFile: assets/demo-3-tooling/azuredeploy.json
+        csmFile: assets/demo-3-deployment/azuredeploy.json
         deploymentMode: 'Validation'
 
-    - publish: assets/demo-3-tooling
+    - publish: assets/demo-3-deployment
       displayName: 'Publish Artifacts'
-      artifact: demo-3-tooling
+      artifact: demo-3-deployment
 
 - stage: Deployment 
   dependsOn: Validation
@@ -68,5 +68,5 @@ stages:
               resourceGroupName: rg-arm-in-a-serverless-world
               location: $(location)
               templateLocation: 'Linked artifact'
-              csmFile: '$(Pipeline.Workspace)/demo-3-tooling/azuredeploy.json'
+              csmFile: '$(Pipeline.Workspace)/demo-3-deployment/azuredeploy.json'
               deploymentMode: 'Incremental'

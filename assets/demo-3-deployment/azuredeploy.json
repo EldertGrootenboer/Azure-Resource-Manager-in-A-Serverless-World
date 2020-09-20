@@ -9,7 +9,7 @@ What we will be doing in this template.
     "parameters": {
         "gitHub": {
             "defaultValue": {
-                "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/assets/demo-3-tooling/"
+                "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/assets/demo-3-deployment/"
             },
             "type": "object"
         },

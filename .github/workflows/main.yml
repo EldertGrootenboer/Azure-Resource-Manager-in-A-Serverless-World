@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - ".github/workflows/main.yml"
-      - "assets/demo-3-tooling/**.json"
+      - "assets/demo-3-deployment/**.json"
   workflow_dispatch:
     inputs:
       tags:
@@ -31,11 +31,11 @@ jobs:
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: rg-arm-in-a-serverless-world
-          template: ./assets/demo-3-tooling/azuredeploy.json
+          template: ./assets/demo-3-deployment/azuredeploy.json
           parameters: location=westeurope
 
       - name: Deploy ARM Templates 2
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az deployment group create --resource-group rg-arm-in-a-serverless-world --template-file ./assets/demo-3-tooling/azuredeploy.json
+            az deployment group create --resource-group rg-arm-in-a-serverless-world --template-file ./assets/demo-3-deployment/azuredeploy.json
