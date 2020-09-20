@@ -22,7 +22,9 @@ stages:
   - job: buildAndVerify
     displayName: Build/Verification
     continueOnError: false
-    pool: ${{parameters.pool}}
+    pool:
+      name: 'Azure pipelines'
+      vmImage: windows-2019
 
     workspace:
       clean: all
