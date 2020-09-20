@@ -20,7 +20,7 @@ stages:
 - stage: Validation
   jobs:
   - job: Validate
-    displayName: Validate ARM Templates
+    displayName: 'Validate ARM Templates'
     continueOnError: false
     pool:
       name: 'Azure pipelines'
@@ -29,18 +29,21 @@ stages:
       clean: all
     steps:
     - task: RunARMTTKTests@1
+      displayName: 'Run ARM-TTK Tests'
       inputs:
         templatelocation: '$(System.DefaultWorkingDirectory)\assets\demo-3-deployment'
         resultLocation: '$(System.DefaultWorkingDirectory)\results'
       continueOnError: true
 
     - task: PublishTestResults@2
+      displayName: 'Publish Results'
       inputs:
         testResultsFormat: 'NUnit'
         testResultsFiles: '$(System.DefaultWorkingDirectory)\results\*-armttk.xml'
 
     - task: AzureResourceGroupDeployment@2
       name: Validate_ARM_Templates
+      displayName: 'Validate ARM Templates'
       inputs:
         azureSubscription: Visual Studio Enterprise
         action: 'Create Or Update Resource Group'
@@ -72,6 +75,7 @@ stages:
           steps:  
           - task: AzureResourceGroupDeployment@2
             name: Deploy_ARM_Templates
+            displayName: 'Deploy ARM Templates'
             inputs:
               azureSubscription: Visual Studio Enterprise
               action: 'Create Or Update Resource Group'
