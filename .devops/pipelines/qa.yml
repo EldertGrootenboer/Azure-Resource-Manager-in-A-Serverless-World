@@ -54,8 +54,6 @@ stages:
     - publish: assets/demo-3-deployment
       displayName: 'Publish Artifacts'
       artifact: demo-3-deployment
-      dependsOn: Validate_ARM_Templates
-      condition: succeeded()
 
 - stage: Deployment 
   dependsOn: Validation
