@@ -4,13 +4,22 @@ What we will be doing in this template.
     2. Build the ARM template from the Bicep template
 */
 param location string = 'westeurope'
-param name string = 'starmserverlessworld' // must be globally unique
+param namePrefix string = 'starm'
+param tags object = { 
+    CreationDate: '${utcNow()}'
+    Project: 'Azure Resource Manager In A Serverless World'
+    Purpose: 'Session' 
+}
+param globalRedundancy bool = false
+
+var storageAccountName = '${namePrefix}${uniqueString(resourceGroup().id)}'
 
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
-    name: name
+    name: storageAccountName
     location: location
     kind: 'Storage'
+    tags: tags
     sku: {
-        name: 'Standard_LRS'
+        name: globalRedundancy ? 'Standard_GRS' : 'Standard_LRS' // if true --> GRS, else --> LRS
     }
 }

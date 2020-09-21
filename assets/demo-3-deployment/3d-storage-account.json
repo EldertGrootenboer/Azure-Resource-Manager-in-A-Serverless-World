@@ -6,22 +6,37 @@
       "type": "string",
       "defaultValue": "westeurope"
     },
-    "name": {
+    "namePrefix": {
       "type": "string",
-      "defaultValue": "starmserverlessworld"
+      "defaultValue": "starm"
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": {
+        "CreationDate": "[format('{0}', utcNow())]",
+        "Project": "Azure Resource Manager In A Serverless World",
+        "Purpose": "Session"
+      }
+    },
+    "globalRedundancy": {
+      "type": "bool",
+      "defaultValue": false
     }
   },
   "functions": [],
-  "variables": {},
+  "variables": {
+    "storageAccountName": "[format('{0}{1}', parameters('namePrefix'), uniqueString(resourceGroup().id))]"
+  },
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2019-06-01",
-      "name": "[parameters('name')]",
+      "name": "[variables('storageAccountName')]",
       "location": "[parameters('location')]",
       "kind": "Storage",
+      "tags": "[parameters('tags')]",
       "sku": {
-        "name": "Standard_LRS"
+        "name": "[if(parameters('globalRedundancy'), 'Standard_GRS', 'Standard_LRS')]"
       }
     }
   ],
