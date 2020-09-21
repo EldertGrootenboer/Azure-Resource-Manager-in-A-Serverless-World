@@ -1,0 +1,10 @@
+/*
+What we will be doing in this template.
+    1. Create ARM template
+    2. Add Cosmos DB resource
+    3. Parameterize template
+    4. Use functions for names
+    5. Add child resources
+    6. Update dependsOn references
+    7. Create parameter file
+*/
