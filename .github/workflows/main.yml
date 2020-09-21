@@ -33,7 +33,6 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: rg-arm-in-a-serverless-world
           template: ./assets/demo-3-deployment/azuredeploy.json
-          parameters: location=westeurope
 
       - name: Deploy ARM Templates 2
         uses: azure/CLI@v1
