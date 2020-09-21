@@ -3,8 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string",
-      "defaultValue": "westeurope"
+      "type": "string"
     },
     "namePrefix": {
       "type": "string",
@@ -13,7 +12,7 @@
     "tags": {
       "type": "object",
       "defaultValue": {
-        "CreationDate": "[format('{0}', utcNow())]",
+        "LastModifiedDate": "[format('{0}', utcNow())]",
         "Project": "Azure Resource Manager In A Serverless World",
         "Purpose": "Session"
       }

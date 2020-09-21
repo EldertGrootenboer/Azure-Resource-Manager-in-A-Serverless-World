@@ -3,8 +3,8 @@
 
 $subscriptionName = "Visual Studio Enterprise"
 $resourceGroupName = "rg-arm-in-a-serverless-world"
-$basePath = "/home/codespace/workspace"
+$basePath = "C:\Users\elder\OneDrive\Sessions\Azure-Resource-Manager-in-A-Serverless-World"
 
 Clear-Host
 Get-AzSubscription -SubscriptionName $subscriptionName | Set-AzContext
-New-AzResourceGroupDeployment -Name Demo3 -ResourceGroupName $resourceGroupName -TemplateFile "$basePath/Azure-Resource-Manager-in-A-Serverless-World/assets/demo-3-deployment/azuredeploy.json" -WhatIf
+New-AzResourceGroupDeployment -Name Demo3 -ResourceGroupName $resourceGroupName -TemplateFile "$basePath\assets\demo-3-deployment\azuredeploy.json" -WhatIf

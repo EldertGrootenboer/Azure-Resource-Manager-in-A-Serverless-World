@@ -3,10 +3,10 @@ What we will be doing in this template.
     1. Create Bicep template in which we deploy a standard Storage Account
     2. Build the ARM template from the Bicep template
 */
-param location string = 'westeurope'
+param location string
 param namePrefix string = 'starm'
 param tags object = { 
-    CreationDate: '${utcNow()}'
+    LastModifiedDate: '${utcNow()}'
     Project: 'Azure Resource Manager In A Serverless World'
     Purpose: 'Session' 
 }

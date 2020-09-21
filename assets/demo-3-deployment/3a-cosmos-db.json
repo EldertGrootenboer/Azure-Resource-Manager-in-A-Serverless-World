@@ -20,7 +20,7 @@
             "defaultValue": {
                 "tags": {
                     "CosmosAccountType": "Production",
-                    "CreationDate": "[utcNow()]",
+                    "LastModifiedDate": "[utcNow()]",
                     "Project": "Azure Resource Manager In A Serverless World",
                     "Purpose": "Session",
                     "defaultExperience": "Core (SQL)"

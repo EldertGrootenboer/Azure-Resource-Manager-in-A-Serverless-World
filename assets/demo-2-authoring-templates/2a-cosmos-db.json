@@ -1,14 +1,14 @@
-/*
-What we will be doing in this template.
-    1. Create ARM template
-    2. Add Cosmos DB resource
-    3. Parameterize template
-    4. Use functions for names
-    5. Add child resources
-    6. Update dependsOn references
-    7. Create parameter file
-*/
 {
+    /*
+    What we will be doing in this template.
+        1. Create ARM template
+        2. Add Cosmos DB resource
+        3. Parameterize template
+        4. Use functions for names
+        5. Add child resources
+        6. Update dependsOn references
+        7. Create parameter file
+    */
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
@@ -24,7 +24,7 @@ What we will be doing in this template.
             "defaultValue": {
                 "tags": {
                     "CosmosAccountType": "Non-Production",
-                    "CreationDate": "[utcNow()]",
+                    "LastModifiedDate": "[utcNow()]",
                     "Project": "Azure Resource Manager In A Serverless World",
                     "Purpose": "Session",
                     "defaultExperience": "Core (SQL)"
