@@ -33,3 +33,4 @@ jobs:
           region: westeurope
           template: ./assets/demo-3-deployment/test.json
           deploymentMode: Incremental
+          parameters: location=westeurope
