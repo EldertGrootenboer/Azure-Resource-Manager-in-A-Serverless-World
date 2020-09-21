@@ -1,9 +1,9 @@
-/*
-What we will be doing in this template.
-    1. Create linked template
-    2. Set correct dependencies between templates
-*/
 {
+    /*
+    What we will be doing in this template.
+        1. Create linked template
+        2. Set correct dependencies between templates
+    */
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {

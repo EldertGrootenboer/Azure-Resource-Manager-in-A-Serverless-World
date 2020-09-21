@@ -1,11 +1,11 @@
-/*
-What we will be doing in this template.
-    1. Create Cosmos DB connection
-    2. Use functions to get secrets and id
-    3. Check which parameter values need to be provided using https://resources.azure.com/raw
-        GET https://management.azure.com/subscriptions/<<subscription-id>>/providers/Microsoft.Web/locations/westeurope/managedApis/documentdb?api-version=2016-06-01
-*/
 {
+    /*
+    What we will be doing in this template.
+        1. Create Cosmos DB connection
+        2. Use functions to get secrets and id
+        3. Check which parameter values need to be provided using https://resources.azure.com/raw
+            GET https://management.azure.com/subscriptions/<<subscription-id>>/providers/Microsoft.Web/locations/westeurope/managedApis/documentdb?api-version=2016-06-01
+    */
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {

@@ -1,10 +1,10 @@
-/*
-What we will be doing in this template.
-    1. Update container name: container -> cn
-    2. Update default consistency level: Eventual -> Strong
-    3. Update Cosmos account type: Non-Production -> Production
-*/
 {
+    /*
+    What we will be doing in this template.
+        1. Update container name: container -> cn
+        2. Update default consistency level: Eventual -> Strong
+        3. Update Cosmos account type: Non-Production -> Production
+    */
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
