@@ -31,5 +31,5 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: rg-arm-in-a-serverless-world
           region: westeurope
-          template: ./assets/demo-3-deployment/azuredeploy.json
+          template: ./assets/demo-3-deployment/test.json
           deploymentMode: Incremental
