@@ -28,6 +28,7 @@ jobs:
 
       - name: Deploy ARM Templates
         uses: azure/arm-deploy@v1
+        continue-on-error: true
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: rg-arm-in-a-serverless-world
