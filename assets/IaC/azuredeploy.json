@@ -4,7 +4,7 @@
     "parameters": {
         "gitHub": {
             "defaultValue": {
-                "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/Assets/IaC/"
+                "baseUri": "https://raw.githubusercontent.com/EldertGrootenboer/Azure-Resource-Manager-in-A-Serverless-World/master/assets/iac/"
             },
             "type": "object"
         }

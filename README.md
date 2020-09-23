@@ -8,4 +8,4 @@ In this session you will learn tips, best practices and techniques from real cus
 
 ## Deployment
 
-Deploying the standard Azure resources can be done by running the script [1-deployment.ps1](./Assets/IaC/1-deployment.ps1).
+Deploying the standard Azure resources can be done by running the script [1-deployment.ps1](./assets/iac/1-deployment.ps1).
