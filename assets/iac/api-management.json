@@ -4,7 +4,7 @@
     "parameters": {
         "apiManagement": {
             "defaultValue": {
-                "name": "apim-arm-in-a-serverless-world",
+                "name": "[concat('apim-arm-in-a-serverless-world', uniqueString(resourceGroup().name))]",
                 "publisherEmail": "eldert@eldert.net",
                 "publisherName": "EPH",
                 "sku": "Developer"

@@ -4,7 +4,7 @@ What we will be doing in this template.
     2. Build the ARM template from the Bicep template
 */
 param location string
-param namePrefix string = 'starm'
+param namePrefix string = 'st'
 param tags object = { 
     LastModifiedDate: '${utcNow()}'
     Project: 'Azure Resource Manager In A Serverless World'
