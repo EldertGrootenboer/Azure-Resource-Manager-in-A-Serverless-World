@@ -7,7 +7,7 @@
                 "name": "apim-arm-in-a-serverless-world",
                 "publisherEmail": "eldert@eldert.net",
                 "publisherName": "EPH",
-                "sku": "Consumption"
+                "sku": "Developer"
             },
             "type": "object"
         },
