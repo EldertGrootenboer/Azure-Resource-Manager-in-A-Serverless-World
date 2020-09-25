@@ -21,7 +21,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "3a-cosmos-db.json"
+                    "relativePath": "../demo-3-deployment/3a-cosmos-db.json"
                 },
                 "parameters": {
                     "location": {
@@ -37,7 +37,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "3d-storage-account.json"
+                    "relativePath": "../demo-3-deployment/3d-storage-account.json"
                 },
                 "parameters": {
                     "location": {
@@ -56,7 +56,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "3b-cosmos-db-connection.json"
+                    "relativePath": "../demo-3-deployment/3b-cosmos-db-connection.json"
                 },
                 "parameters": {
                     "location": {
@@ -75,7 +75,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "relativePath": "3c-logic-app.json"
+                    "relativePath": "../demo-3-deployment/3c-logic-app.json"
                 },
                 "parameters": {
                     "location": {
